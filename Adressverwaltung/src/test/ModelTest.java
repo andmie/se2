@@ -1,7 +1,7 @@
 package test;
 
 import view.decorator.DirtyDecorator;
-import model.EmailonlyAddress;
+import model.spring.EmailonlyAddress;
 import junit.framework.TestCase;
 
 public class ModelTest extends TestCase {

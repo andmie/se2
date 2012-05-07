@@ -1,7 +1,6 @@
-package model;
+package model.spring;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,7 +9,10 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AddressList extends LinkedList<AbstractAddress> implements Serializable{
+import model.AddressListSubscriber;
+import model.IAddressList;
+
+public class AddressList extends LinkedList<AbstractAddress> implements IAddressList, Serializable{
 	private static String filename = "address_system.dat";
 	private static final long serialVersionUID = -8436170099085318899L;
 	private volatile static AddressList instance = null;

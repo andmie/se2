@@ -1,6 +1,6 @@
 package strategy;
 
-import model.AbstractAddress;
+import model.spring.AbstractAddress;
 
 public class EmailStrategy implements Strategy {
 

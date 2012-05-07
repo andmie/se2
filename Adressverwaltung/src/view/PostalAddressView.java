@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.AbstractAddress;
-import model.PostalAddress;
+import model.spring.AbstractAddress;
+import model.spring.PostalAddress;
 
 public class PostalAddressView extends AbstractAddressView{
 

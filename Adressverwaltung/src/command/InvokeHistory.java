@@ -3,7 +3,7 @@ package command;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import model.AddressList;
+import model.spring.AddressList;
 
 public class InvokeHistory {
 

@@ -14,8 +14,8 @@ import command.ChangeAddressCommand;
 import command.Command;
 import command.InvokeHistory;
 
-import model.AbstractAddress;
-import model.AddressList;
+import model.spring.AbstractAddress;
+import model.spring.AddressList;
 
 public abstract class AbstractAddressView extends JFrame{
 
@@ -30,11 +30,7 @@ public abstract class AbstractAddressView extends JFrame{
 	
 	//Constructor
 	public AbstractAddressView(AbstractAddress address) {
-		try {
-			this.address = address.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
+		this.address = address.clone();
 		this.oldaddress = address;
 	}
 

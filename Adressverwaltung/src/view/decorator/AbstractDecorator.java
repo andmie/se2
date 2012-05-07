@@ -1,6 +1,6 @@
 package view.decorator;
 
-import model.AbstractAddress;
+import model.spring.AbstractAddress;
 
 public class AbstractDecorator extends AbstractAddress {
 

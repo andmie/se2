@@ -1,6 +1,9 @@
-package model;
+package model.spring;
 
-public class PostalAddress extends AbstractAddress{
+import model.IPostalAddress;
+
+
+public class PostalAddress extends AbstractAddress implements IPostalAddress{
 
 	private static final long serialVersionUID = 2859543943396233532L;
 	

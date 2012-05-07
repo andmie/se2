@@ -24,10 +24,10 @@ import javax.swing.JScrollPane;
 import command.CommandButtons;
 import command.RemoveAddressCommand;
 
-import model.AbstractAddress;
-import model.AddressList;
-import model.EmailonlyAddress;
-import model.PostalAddress;
+import model.spring.AbstractAddress;
+import model.spring.AddressList;
+import model.spring.EmailonlyAddress;
+import model.spring.PostalAddress;
 import strategy.Context;
 import strategy.EmailStrategy;
 import strategy.PostalStrategy;
@@ -156,7 +156,7 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
                             address = ((AbstractDecorator)address).getDecorated();
 	    	        	}
 	    	        	//Create View
-	    	        	if (address instanceof model.PostalAddress){
+	    	        	if (address instanceof model.spring.PostalAddress){
 	    	            	new PostalAddressView(address);
 	    	            }
 	    	            else{

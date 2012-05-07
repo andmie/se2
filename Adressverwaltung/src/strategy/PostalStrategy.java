@@ -1,7 +1,7 @@
 package strategy;
 
-import model.AbstractAddress;
-import model.PostalAddress;
+import model.spring.AbstractAddress;
+import model.spring.PostalAddress;
 
 public class PostalStrategy implements Strategy {
 

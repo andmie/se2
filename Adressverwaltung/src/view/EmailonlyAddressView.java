@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.AbstractAddress;
+import model.spring.AbstractAddress;
 
 public class EmailonlyAddressView extends AbstractAddressView {
 

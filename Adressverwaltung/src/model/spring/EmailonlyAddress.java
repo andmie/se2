@@ -1,6 +1,9 @@
-package model;
+package model.spring;
 
-public class EmailonlyAddress extends AbstractAddress {
+import model.IEmailonlyAddress;
+
+
+public class EmailonlyAddress extends AbstractAddress implements IEmailonlyAddress{
 
 	private static final long serialVersionUID = -9062158637768953074L;
 
