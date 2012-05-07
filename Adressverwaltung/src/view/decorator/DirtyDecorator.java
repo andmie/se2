@@ -12,7 +12,10 @@ public class DirtyDecorator extends AbstractDecorator {
 	
 	@Override
     public String toString() {
+		if (address.isDirty()){
             return ">"+super.toString();
+		}
+		return super.toString();
     }
 
 }
