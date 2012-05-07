@@ -1,7 +1,7 @@
 package strategy;
 
-import model.spring.AbstractAddress;
+import model.IAbstractAddress;
 
 public interface Strategy {
-	void send(AbstractAddress address); 
+	void send(IAbstractAddress address); 
 }

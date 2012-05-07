@@ -10,9 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.AddressListSubscriber;
+import model.BeanFactory;
+import model.IAbstractAddress;
 import model.IAddressList;
 
-public class AddressList extends LinkedList<AbstractAddress> implements IAddressList, Serializable{
+public class AddressList extends LinkedList<IAbstractAddress> implements IAddressList, Serializable{
 	private static String filename = "address_system.dat";
 	private static final long serialVersionUID = -8436170099085318899L;
 	private volatile static AddressList instance = null;
@@ -40,13 +42,13 @@ public class AddressList extends LinkedList<AbstractAddress> implements IAddress
 	public void unsubscribe(AddressListSubscriber subscriber) {
 		subscribers.remove(subscriber);
 	}
-	public boolean add(AbstractAddress address)
+	public boolean add(IAbstractAddress address)
 	{	
 	        super.add(address);
 	        this.benachrichtigen();
 	        return true;
 	}
-	public boolean remove(AbstractAddress address)
+	public boolean remove(IAbstractAddress address)
 	{
 		super.remove(address);
 		this.benachrichtigen();
@@ -63,12 +65,14 @@ public class AddressList extends LinkedList<AbstractAddress> implements IAddress
 		try {
 			final FileOutputStream fos = new FileOutputStream(filename);
 			final ObjectOutputStream out = new ObjectOutputStream(fos);
-			out.writeObject(AddressList.getInstance());
+			System.out.println(BeanFactory.getAddressListBean().getElementAt(0).getClass());
+			out.writeObject((AddressList)BeanFactory.getAddressListBean());
 			out.close();
 
-			for (final AbstractAddress address : AddressList.getInstance())
+			for (final IAbstractAddress address : BeanFactory.getAddressListBean()){
 				address.clean();
-			AddressList.getInstance().benachrichtigen();
+			}
+			BeanFactory.getAddressListBean().benachrichtigen();
 		} catch (final IOException ex) {
 			ex.printStackTrace();
 		}
@@ -83,7 +87,7 @@ public class AddressList extends LinkedList<AbstractAddress> implements IAddress
 		try {
 		    fis = new FileInputStream(filename);
 		    in = new ObjectInputStream(fis);
-		    List<AbstractAddress> addresses 	   = (List<AbstractAddress>) in.readObject();
+		    List<AbstractAddress> addresses = (List<AbstractAddress>) in.readObject();
 		    
 		    AddressList.getInstance().clear();
 		    AddressList.getInstance().addAll(addresses);
@@ -97,5 +101,21 @@ public class AddressList extends LinkedList<AbstractAddress> implements IAddress
 		   ex.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public int indexOf(IAbstractAddress oldAddress) {
+		return super.indexOf(oldAddress);
+	}
+
+	@Override
+	public void set(Object indexOf, IAbstractAddress newAddress) {
+		super.set((Integer) indexOf, newAddress);
+		
+	}
+
+	@Override
+	public IAbstractAddress getElementAt(int index) {
+		return super.get(index);
 	}
 }

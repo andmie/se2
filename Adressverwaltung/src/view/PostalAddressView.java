@@ -7,8 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.spring.AbstractAddress;
-import model.spring.PostalAddress;
+import model.IPostalAddress;
 
 public class PostalAddressView extends AbstractAddressView{
 
@@ -22,7 +21,7 @@ public class PostalAddressView extends AbstractAddressView{
 	private JTextField emailaddressTextField;
 	
 
-	public PostalAddressView(AbstractAddress address) {
+	public PostalAddressView(IPostalAddress address) {
 		super(address);
 		System.out.println("Postal: "+this.address);
 		initabstract();
@@ -31,22 +30,22 @@ public class PostalAddressView extends AbstractAddressView{
 
 	@Override
 	public void retrieveFields() {
-		((PostalAddress) address).setName(nameTextField.getText());
-		((PostalAddress) address).setEmailaddress(emailaddressTextField.getText());
-		((PostalAddress) address).setStrasse(strasseTextField.getText());
-		((PostalAddress) address).setHausnummer(hausnummerTextField.getText());
-		((PostalAddress) address).setPlz(plzTextField.getText());
-		((PostalAddress) address).setOrt(ortTextField.getText());
+		((IPostalAddress) address).setName(nameTextField.getText());
+		((IPostalAddress) address).setEmailaddress(emailaddressTextField.getText());
+		((IPostalAddress) address).setStrasse(strasseTextField.getText());
+		((IPostalAddress) address).setHausnummer(hausnummerTextField.getText());
+		((IPostalAddress) address).setPlz(plzTextField.getText());
+		((IPostalAddress) address).setOrt(ortTextField.getText());
 	}
 
 	@Override
 	public void populateFields() {
 		nameTextField.setText(address.getName());
 		emailaddressTextField.setText(address.getEmailaddress());
-		strasseTextField.setText(((PostalAddress) address).getStrasse());
-		hausnummerTextField.setText(""+((PostalAddress) address).getHausnummer());
-		plzTextField.setText(""+((PostalAddress) address).getPlz());
-		ortTextField.setText(((PostalAddress) address).getOrt());
+		strasseTextField.setText(((IPostalAddress) address).getStrasse());
+		hausnummerTextField.setText(""+((IPostalAddress) address).getHausnummer());
+		plzTextField.setText(""+((IPostalAddress) address).getPlz());
+		ortTextField.setText(((IPostalAddress) address).getOrt());
 	}
 
 	@Override

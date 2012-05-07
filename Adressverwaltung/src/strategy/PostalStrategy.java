@@ -1,13 +1,13 @@
 package strategy;
 
-import model.spring.AbstractAddress;
-import model.spring.PostalAddress;
+import model.IAbstractAddress;
+import model.IPostalAddress;
 
 public class PostalStrategy implements Strategy {
 
 	@Override
-	public void send(AbstractAddress address) {
-		if(address instanceof PostalAddress){
+	public void send(IAbstractAddress address) {
+		if(address instanceof IPostalAddress){
 			System.out.println("Post to: " + address.toString());
 		}
 		else{

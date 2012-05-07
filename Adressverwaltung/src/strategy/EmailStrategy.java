@@ -1,11 +1,11 @@
 package strategy;
 
-import model.spring.AbstractAddress;
+import model.IAbstractAddress;
 
 public class EmailStrategy implements Strategy {
 
 	@Override
-	public void send(AbstractAddress address) {
+	public void send(IAbstractAddress address) {
 		System.out.println("Email to: " + address.toString());
 	}
 

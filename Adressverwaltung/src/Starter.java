@@ -1,9 +1,9 @@
-import model.spring.AddressList;
 import view.AddressListView;
+import model.BeanFactory;
 
 public class Starter {
  public static void main(String[] args) {
-	 AddressList.getInstance().subscribe(new AddressListView());
+	 BeanFactory.getAddressListBean().subscribe(new AddressListView());
  }
 }
 

@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 import model.IAbstractAddress;
 
-public abstract class AbstractAddress implements IAbstractAddress, Serializable, Cloneable{
+public class AbstractAddress implements IAbstractAddress, Serializable, Cloneable{
 	
 	private static final long serialVersionUID = 6780532528672421304L;
 	private transient boolean dirty = true;
@@ -37,7 +37,7 @@ public abstract class AbstractAddress implements IAbstractAddress, Serializable,
 	}
 	
 	public AbstractAddress clone() {
-        try {
+		try {
 			return (AbstractAddress)super.clone();
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
@@ -45,7 +45,5 @@ public abstract class AbstractAddress implements IAbstractAddress, Serializable,
 		}
 		return null;
     }
-	
-	public abstract String toString();
 	
 }

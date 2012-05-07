@@ -1,7 +1,5 @@
 package model;
 
-import model.spring.AbstractAddress;
-
 public interface IAbstractAddress {
 	
 	public boolean isDirty();
@@ -11,7 +9,6 @@ public interface IAbstractAddress {
 	public void setName(String name);
 	public String getEmailaddress();
 	public void setEmailaddress(String emailaddress);
-	public AbstractAddress clone();
 	public abstract String toString();
-	
+	public IAbstractAddress clone();
 }

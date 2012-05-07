@@ -1,7 +1,7 @@
 package strategy;
 
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
+import model.IAbstractAddress;
+import model.IAddressList;
 
 public class Context {
 	
@@ -12,8 +12,8 @@ public class Context {
         this.strategy = strategy;
     }
  
-    public void sendtoAddress(AddressList addresslist) {
-    	for (AbstractAddress address : addresslist) {
+    public void sendtoAddress(IAddressList addresslist) {
+    	for (IAbstractAddress address : addresslist) {
 			strategy.send(address);
 		}
     }

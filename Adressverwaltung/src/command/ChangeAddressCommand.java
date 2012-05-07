@@ -1,32 +1,30 @@
 package command;
 
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
+import model.BeanFactory;
+import model.IAbstractAddress;
 
 public class ChangeAddressCommand implements Command {
 	
-	private AbstractAddress oldAddress;
-	private AbstractAddress newAddress;
+	private IAbstractAddress oldAddress;
+	private IAbstractAddress newAddress;
 
-	public ChangeAddressCommand(AbstractAddress oldAddress,
-			AbstractAddress newAddress) {
+	public ChangeAddressCommand(IAbstractAddress oldAddress,
+			IAbstractAddress newAddress) {
 		this.oldAddress = oldAddress;
 		this.newAddress = newAddress;
 	}
 
 	@Override
 	public void execute() {
-		AddressList addressList = AddressList.getInstance();
 		newAddress.setDirty(true);
-		addressList.set(addressList.indexOf(oldAddress), newAddress);
-		addressList.benachrichtigen();
+		BeanFactory.getAddressListBean().set(BeanFactory.getAddressListBean().indexOf(oldAddress), newAddress);
+		BeanFactory.getAddressListBean().benachrichtigen();
 	}
 
 	@Override
 	public void undo() {
-		AddressList addressList = AddressList.getInstance();
-		addressList.set(addressList.indexOf(newAddress), oldAddress);
-		addressList.benachrichtigen();
+		BeanFactory.getAddressListBean().set(BeanFactory.getAddressListBean().indexOf(newAddress), oldAddress);
+		BeanFactory.getAddressListBean().benachrichtigen();
 	}
 	
 

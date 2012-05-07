@@ -7,7 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.spring.AbstractAddress;
+import model.IAbstractAddress;
+import model.IEmailonlyAddress;
 
 public class EmailonlyAddressView extends AbstractAddressView {
 
@@ -16,17 +17,18 @@ public class EmailonlyAddressView extends AbstractAddressView {
 	private JTextField nameTextField;
 	private JTextField emailaddressTextField;
 	
-	public EmailonlyAddressView(AbstractAddress address) {
-		super(address);
+	public EmailonlyAddressView(IEmailonlyAddress address) {
+		super((IAbstractAddress) address);
 		initabstract();
 		populateFields();
 	}
-	
+
 	@Override
 	public void retrieveFields() {
 		address.setName(nameTextField.getText());
 		address.setEmailaddress(emailaddressTextField.getText());
 	}
+	
 	
 	@Override
 	public void populateFields() {

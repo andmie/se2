@@ -1,13 +1,15 @@
 package view.decorator;
 
-import model.spring.AbstractAddress;
+import model.IAbstractAddress;
 
 public class DirtyDecorator extends AbstractDecorator {
+	
+	private static final long serialVersionUID = -1750981549596157062L;
+	IAbstractAddress address;
 
-	private static final long serialVersionUID = 5766724679012962296L;
-
-	public DirtyDecorator(AbstractAddress address) {
+	public DirtyDecorator(IAbstractAddress address) {
 		super(address);
+		this.address = address;
 	}
 	
 	@Override

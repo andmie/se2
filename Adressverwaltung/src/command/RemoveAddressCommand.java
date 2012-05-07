@@ -1,25 +1,23 @@
 package command;
 
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
+import model.BeanFactory;
+import model.IAbstractAddress;
 
 public class RemoveAddressCommand implements Command {
-	private AbstractAddress address;
-	private int index;
+	private IAbstractAddress address;
 	
 	public RemoveAddressCommand(int index) {
-		this.address = AddressList.getInstance().get(index);
-		this.index = index;
+		this.address = BeanFactory.getAddressListBean().get(index);
 	}
 
 	@Override
 	public void execute() {
-		AddressList.getInstance().remove(address);
+		BeanFactory.getAddressListBean().remove(address);
 	}
 
 	@Override
 	public void undo() {
-		AddressList.getInstance().add(address);
+		BeanFactory.getAddressListBean().add(address);
 	}
 
 }

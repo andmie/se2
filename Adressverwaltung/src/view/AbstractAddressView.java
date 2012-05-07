@@ -9,27 +9,27 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.BeanFactory;
+import model.IAbstractAddress;
+
 import command.AddAddressCommand;
 import command.ChangeAddressCommand;
 import command.Command;
 import command.InvokeHistory;
-
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
 
 public abstract class AbstractAddressView extends JFrame{
 
 	private static final long serialVersionUID = 4218303237851924952L;
 	
 	//Create objects
-	protected AbstractAddress address;
-	protected AbstractAddress oldaddress;
+	protected IAbstractAddress address;
+	protected IAbstractAddress oldaddress;
 	
 	private JPanel upperPanel;
 	private JButton speicherButton;
 	
 	//Constructor
-	public AbstractAddressView(AbstractAddress address) {
+	public AbstractAddressView(IAbstractAddress address) {
 		this.address = address.clone();
 		this.oldaddress = address;
 	}
@@ -56,7 +56,7 @@ public abstract class AbstractAddressView extends JFrame{
 				// Abfrage ob die Addresse geaendert wird
 				// oder ob eine neue Addresse hinzugefuegt
 				// werden soll.
-				int index = AddressList.getInstance().indexOf(oldaddress);
+				int index = BeanFactory.getAddressListBean().indexOf(oldaddress);
 				System.out.println("index: "+index);
 				Command command = null;
 				if (index != -1) {

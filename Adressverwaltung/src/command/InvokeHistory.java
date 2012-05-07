@@ -3,7 +3,7 @@ package command;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import model.spring.AddressList;
+import model.IAddressList;
 
 public class InvokeHistory {
 
@@ -16,7 +16,7 @@ public class InvokeHistory {
 
 	public static InvokeHistory getInstance() {
         if (instance == null) {
-        	synchronized(AddressList.class){
+        	synchronized(IAddressList.class){
         		if (instance == null) {
         			instance = new InvokeHistory();
         		}

@@ -1,23 +1,24 @@
 package command;
 
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
+import model.BeanFactory;
+import model.IAbstractAddress;
 
 public class AddAddressCommand implements Command {
-	private AbstractAddress address;
+	private IAbstractAddress address;
 	
-	public AddAddressCommand(AbstractAddress address) {
+	public AddAddressCommand(IAbstractAddress address) {
 		this.address = address;
 	}
 
 	@Override
 	public void execute() {
-		AddressList.getInstance().add(address);
+		BeanFactory.getAddressListBean().add(address);
+		System.out.println(BeanFactory.getAddressListBean());
 	}
 
 	@Override
 	public void undo() {
-		AddressList.getInstance().remove(address);
+		BeanFactory.getAddressListBean().remove(address);
 	}
 
 }

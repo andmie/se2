@@ -4,6 +4,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.spri
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     <bean id = "AddressList" class = "model.spring.AddressList" factory-method = "getInstance" />
 	<bean id = "EmailonlyAddress" class = "model.spring.EmailonlyAddress" scope = "prototype" />
-	<bean id = "PostalAddresss" class = "model.spring.PostalAddress" scope = "prototype" />
+	<bean id = "PostalAddress" class = "model.spring.PostalAddress" scope = "prototype" />
 	<bean id = "AbstractAddress" class = "model.spring.AbstractAddress" />
 </beans>

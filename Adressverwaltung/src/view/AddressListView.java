@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.Iterator;
 
 import javax.swing.BorderFactory;
@@ -21,19 +20,19 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
-import command.CommandButtons;
-import command.RemoveAddressCommand;
-
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
-import model.spring.EmailonlyAddress;
-import model.spring.PostalAddress;
+import model.BeanFactory;
+import model.IAbstractAddress;
+import model.IEmailonlyAddress;
+import model.IPostalAddress;
 import strategy.Context;
 import strategy.EmailStrategy;
 import strategy.PostalStrategy;
 import strategy.Strategy;
 import view.decorator.AbstractDecorator;
 import view.decorator.DirtyDecorator;
+
+import command.CommandButtons;
+import command.RemoveAddressCommand;
 
 public class AddressListView extends JFrame implements model.AddressListSubscriber{
 
@@ -46,7 +45,6 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 		init();
 	}
 
-	@SuppressWarnings("serial")
 	private void init () {
 		
 		//Layout configuration
@@ -96,7 +94,7 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				AbstractAddress address = new EmailonlyAddress();
+				IEmailonlyAddress address = BeanFactory.getIEmailonlyAddressBean();
 				new EmailonlyAddressView(address);
 			}
 		});
@@ -111,8 +109,7 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				AbstractAddress address = new PostalAddress();
-				new PostalAddressView(address);
+				new PostalAddressView(BeanFactory.getPostalAddressBean());
 			}
 		});
 	    
@@ -150,17 +147,17 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 	    	        if (index == -1)
 	    	        	System.out.println("Sie haben nichts ausgewählt.");
 	    	        else {
-	    	        	AbstractAddress address = (AbstractAddress)listModel.getElementAt(index);
+	    	        	IAbstractAddress address = BeanFactory.getAddressListBean().getElementAt(index);
 	    	        	
 	    	        	if (address instanceof AbstractDecorator){
                             address = ((AbstractDecorator)address).getDecorated();
 	    	        	}
 	    	        	//Create View
-	    	        	if (address instanceof model.spring.PostalAddress){
-	    	            	new PostalAddressView(address);
+	    	        	if (address instanceof model.IPostalAddress){
+	    	            	new PostalAddressView((IPostalAddress) address);
 	    	            }
 	    	            else{
-	    	            	new EmailonlyAddressView(address);
+	    	            	new EmailonlyAddressView((IEmailonlyAddress) address);
 	    	            }		  		
 	    	        }
 	    		}
@@ -188,7 +185,7 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				AddressList.getInstance().save();
+				BeanFactory.getAddressListBean().save();
 			}
 		});
 	    
@@ -203,9 +200,9 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				AddressList.getInstance().load();
-				for (Iterator<AbstractAddress> it = AddressList.getInstance().iterator(); it.hasNext(); ){
-                    AbstractAddress address = it.next();
+				BeanFactory.getAddressListBean().load();
+				for (Iterator<IAbstractAddress> it = BeanFactory.getAddressListBean().iterator(); it.hasNext(); ){
+                    IAbstractAddress address = it.next();
                     address.setDirty(false);
 				}
 			}
@@ -238,7 +235,7 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 					return;
 				}
 	    	  	context = new Context(strategy);
-	    	  	context.sendtoAddress(AddressList.getInstance());
+	    	  	context.sendtoAddress(BeanFactory.getAddressListBean());
 	      }
 	     });
 	    strategyPanel.add(sendButton);
@@ -254,7 +251,7 @@ public class AddressListView extends JFrame implements model.AddressListSubscrib
 	
 	private void refreshAddressList() {
 		listModel.removeAllElements();
-		for (AbstractAddress address : AddressList.getInstance()) {
+		for (IAbstractAddress address : BeanFactory.getAddressListBean()) {
 			listModel.addElement(address.isDirty() ? new DirtyDecorator(address) : address);
 		}
 	}

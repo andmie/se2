@@ -58,6 +58,4 @@ public class PostalAddress extends AbstractAddress implements IPostalAddress{
 	public String toString() {
 		return this.getName() + " " + this.getEmailaddress() + " " + this.getStrasse() + " " + this.getHausnummer() + " "+ this.getPlz() + " " + this.getOrt(); 
 	}
-	
-
 }
