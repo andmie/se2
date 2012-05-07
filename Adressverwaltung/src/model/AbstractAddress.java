@@ -1,0 +1,43 @@
+package model;
+import java.io.Serializable;
+
+public abstract class AbstractAddress implements Serializable, Cloneable{
+	
+	private static final long serialVersionUID = 6780532528672421304L;
+	private transient boolean dirty = true;
+	
+	private String name;
+	private String emailaddress;
+	
+	public boolean isDirty() {
+        return dirty;
+	}
+	
+	public void setDirty(boolean dirty) {
+	        this.dirty = dirty;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmailaddress() {
+		return emailaddress;
+	}
+	public void setEmailaddress(String emailaddress) {
+		this.emailaddress = emailaddress;
+	}
+	
+	public AbstractAddress clone() throws CloneNotSupportedException {
+        return (AbstractAddress)super.clone();
+    }
+	
+	public abstract String toString();
+
+	public void clean() {
+		dirty = false;
+	}
+	
+}
