@@ -9,6 +9,5 @@ public interface IAbstractAddress {
 	public void setName(String name);
 	public String getEmailaddress();
 	public void setEmailaddress(String emailaddress);
-	public abstract String toString();
 	public IAbstractAddress clone();
 }

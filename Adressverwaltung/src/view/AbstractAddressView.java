@@ -57,7 +57,6 @@ public abstract class AbstractAddressView extends JFrame{
 				// oder ob eine neue Addresse hinzugefuegt
 				// werden soll.
 				int index = BeanFactory.getAddressListBean().indexOf(oldaddress);
-				System.out.println("index: "+index);
 				Command command = null;
 				if (index != -1) {
 					//Adresse wurde geaendert

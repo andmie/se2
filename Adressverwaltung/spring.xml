@@ -5,5 +5,5 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
     <bean id = "AddressList" class = "model.spring.AddressList" factory-method = "getInstance" />
 	<bean id = "EmailonlyAddress" class = "model.spring.EmailonlyAddress" scope = "prototype" />
 	<bean id = "PostalAddress" class = "model.spring.PostalAddress" scope = "prototype" />
-	<bean id = "AbstractAddress" class = "model.spring.AbstractAddress" />
+	<bean id = "AbstractAddress" class = "model.spring.AbstractAddress"/>
 </beans>
